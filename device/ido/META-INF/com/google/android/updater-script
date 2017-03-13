@@ -2,6 +2,31 @@ getprop("ro.product.device") == "ido" || getprop("ro.build.product") == "ido"  |
 
 show_progress(0.900000, 150);
 mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/cust", "/cust", "max_batch_time=0,commit=1,data=ordered,barrier=1,errors=panic,nodelalloc");
+delete("/cust/app/customized/partner-XMRemoteController/partner-XMRemoteController.apk",
+       "/cust/app/customized/ota-miui-MiGalleryLockscreen/ota-miui-MiGalleryLockscreen.apk",
+       "/cust/app/customized/ota-miui-MiuiForum/ota-miui-MiuiForum.apk",
+       "/cust/app/customized/partner-BaiduSpeechService/partner-BaiduSpeechService.apk",
+       "/cust/app/customized/partner-MiShop/partner-MiShop.apk",
+       "/cust/app/customized/ota-miui-XiaomiSmartHome/ota-miui-XiaomiSmartHome.apk",
+       "/cust/app/customized/partner-Zixun/partner-Zixun.apk");
+delete("/cust/app/customized/recommended-3rd-com.immomo.momo.apk",
+       "/cust/app/customized/recommended-3rd-com.immomo.momo/recommended-3rd-com.immomo.momo.apk",
+       "/cust/app/customized/recommended-3rd-com.juanpi.ui.apk",
+       "/cust/app/customized/recommended-3rd-com.juanpi.ui/recommended-3rd-com.juanpi.ui.apk",
+       "/cust/app/customized/recommended-3rd-com.qiyi.video.apk",
+       "/cust/app/customized/recommended-3rd-com.qiyi.video/recommended-3rd-com.qiyi.video.apk",
+       "/cust/app/customized/recommended-3rd-com.qzone.apk",
+       "/cust/app/customized/recommended-3rd-com.qzone/recommended-3rd-com.qzone.apk",
+       "/cust/app/customized/recommended-3rd-com.sina.weibo.apk",
+       "/cust/app/customized/recommended-3rd-com.sina.weibo/recommended-3rd-com.sina.weibo.apk",
+       "/cust/app/customized/recommended-3rd-com.tencent.qqmusic.apk",
+       "/cust/app/customized/recommended-3rd-com.tencent.qqmusic/recommended-3rd-com.tencent.qqmusic.apk",
+       "/cust/app/customized/recommended-3rd-com.tuniu.app.ui.apk",
+       "/cust/app/customized/recommended-3rd-com.tuniu.app.ui/recommended-3rd-com.tuniu.app.ui.apk",
+       "/cust/app/customized/recommended-3rd-tv.danmaku.bili.apk",
+       "/cust/app/customized/recommended-3rd-tv.danmaku.bili/recommended-3rd-tv.danmaku.bili.apk",
+       "/cust/app/customized/partner-XunfeiSpeechService3.apk",
+       "/cust/app/customized/partner-XunfeiSpeechService3/partner-XunfeiSpeechService3.apk");
 delete_recursive("/cust");
 package_extract_dir("cust", "/cust") || abort("Failed to extract dir from \"cust\" to \"/cust\".");
 set_metadata_recursive("/cust", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
@@ -235,6 +260,8 @@ delete_recursive("/data/app/recommended-3rd-com.sina.weibo");
 delete_recursive("/cust/app/customized/recommended-3rd-com.sina.weibo");
 delete_recursive("/data/app/recommended-3rd-com.tuan800.tao800");
 delete_recursive("/cust/app/customized/recommended-3rd-com.tuan800.tao800");
+delete_recursive("/data/app/recommended-3rd-com.ss.android.article.news");
+delete_recursive("/cust/app/customized/recommended-3rd-com.ss.android.article.news");
 delete_recursive("/data/app/WaliLive");
 delete_recursive("/cust/app/customized/WaliLive");
 delete_recursive("/data/app/VTalk");

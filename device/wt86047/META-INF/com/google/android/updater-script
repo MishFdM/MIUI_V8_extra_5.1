@@ -1,6 +1,7 @@
-get_device_compatible("wt86047") == "OK" || abort("This package is for \"wt86047\" devices; this is a \"" + getprop("ro.product.device") + "\".");
+getprop("ro.product.device") == "wt86047" || getprop("ro.build.product") == "wt86047"  || abort("This package is for \"wt86047\" devices; this is a \"" + getprop("ro.product.device") + "\".");
+
 mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/userdata", "/data", "");
-show_progress(0.750000, 0);
+show_progress(0.900000, 150);
 format("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "0", "/system");
 mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system", "max_batch_time=0,commit=1,data=ordered,barrier=1,errors=panic,nodelalloc");
 package_extract_dir("system", "/system") || abort("Failed to extract dir from \"system\" to \"/system\".");
@@ -43,28 +44,36 @@ symlink("/persist/rfs/shared", "/system/rfs/apq/gnss/shared",
 symlink("/system/build.prop", "/system/vendor/Default/system/build.prop.link");
 symlink("/system/etc/cdma_call_conf.xml", "/system/vendor/Default/system/etc/cdma_call_conf.xml.link");
 symlink("/system/etc/spn-conf.xml", "/system/vendor/Default/system/etc/spn-conf.xml.link");
+symlink("/system/lib/libDToken.so", "/system/app/mab/lib/arm/libDToken.so");
 symlink("/system/lib/libDecRes_sdk.so", "/system/app/MiuiVideo/lib/arm/libDecRes_sdk.so");
 symlink("/system/lib/libDexHelper.so", "/system/priv-app/MiuiGallery/lib/arm/libDexHelper.so");
-symlink("/system/lib/libFaceDetectionAPI.so", "/system/priv-app/MiuiGallery/lib/arm/libFaceDetectionAPI.so");
 symlink("/system/lib/libJeejenAisound.so", "/system/app/jjhome/lib/arm/libJeejenAisound.so");
 symlink("/system/lib/libMiuiGalleryNSGIF.so", "/system/priv-app/MiuiGallery/lib/arm/libMiuiGalleryNSGIF.so");
+symlink("/system/lib/libMiuiScreenRecord.so", "/system/app/MiuiScreenRecorder/lib/arm/libMiuiScreenRecord.so");
+symlink("/system/lib/libNative.so", "/system/app/mab/lib/arm/libNative.so");
 symlink("/system/lib/libPinguoImageSDK.so", "/system/priv-app/MiuiGallery/lib/arm/libPinguoImageSDK.so");
+symlink("/system/lib/libShopSigned.so", "/system/app/mab/lib/arm/libShopSigned.so");
 symlink("/system/lib/libbluetooth_jni.so", "/system/app/Bluetooth/lib/arm/libbluetooth_jni.so",
         "/system/app/BluetoothExt/lib/arm/libbluetooth_jni.so");
 symlink("/system/lib/libbspatch.so", "/system/app/jjhome/lib/arm/libbspatch.so");
 symlink("/system/lib/libdefcontainer_jni.so", "/system/priv-app/DefaultContainerService/lib/arm/libdefcontainer_jni.so");
-symlink("/system/lib/libdidi_secure.so", "/system/priv-app/YellowPage/lib/arm/libdidi_secure.so");
 symlink("/system/lib/libengmodjni.so", "/system/app/FactoryMode/lib/arm/libengmodjni.so");
+symlink("/system/lib/libentryexpro.so", "/system/app/mab/lib/arm/libentryexpro.so");
 symlink("/system/lib/libfamily_jni.so", "/system/app/jjhome/lib/arm/libfamily_jni.so");
+symlink("/system/lib/libgenius_blur.so", "/system/app/FileExplorer/lib/arm/libgenius_blur.so");
 symlink("/system/lib/libgetuiext.so", "/system/app/jjhome/lib/arm/libgetuiext.so");
 symlink("/system/lib/libjeejenmsc.so", "/system/app/jjhome/lib/arm/libjeejenmsc.so");
+symlink("/system/lib/libjni_metok.so", "/system/app/MetokNLP/lib/arm/libjni_metok.so");
 symlink("/system/lib/libjni_pacprocessor.so", "/system/app/PacProcessor/lib/arm/libjni_pacprocessor.so");
 symlink("/system/lib/liblocSDK_2_5OEM.so", "/system/app/BaiduNetworkLocation/lib/arm/liblocSDK_2_5OEM.so");
 symlink("/system/lib/libminivenus.so", "/system/app/MiuiVideo/lib/arm/libminivenus.so");
+symlink("/system/lib/libmiui_apssdk.so", "/system/app/MetokNLP/lib/arm/libmiui_apssdk.so");
+symlink("/system/lib/libmiui_locSDK_2_5OEM.so", "/system/app/MetokNLP/lib/arm/libmiui_locSDK_2_5OEM.so");
 symlink("/system/lib/libmiuiclassproxy.so", "/system/app/miui/lib/arm/libmiuiclassproxy.so");
 symlink("/system/lib/libmiuidiffpatcher.so", "/system/app/miui/lib/arm/libmiuidiffpatcher.so");
 symlink("/system/lib/libmiuiimageutilities.so", "/system/app/miui/lib/arm/libmiuiimageutilities.so");
 symlink("/system/lib/libmiuinative.so", "/system/app/miui/lib/arm/libmiuinative.so");
+symlink("/system/lib/libmiupdate.so", "/system/app/Calculator/lib/arm/libmiupdate.so");
 symlink("/system/lib/libmresearch.so", "/system/app/MiuiVideo/lib/arm/libmresearch.so");
 symlink("/system/lib/libnetworklocation.so", "/system/app/BaiduNetworkLocation/lib/arm/libnetworklocation.so");
 symlink("/system/lib/libnexcralbody_mc_jb.so", "/system/priv-app/MiuiGallery/lib/arm/libnexcralbody_mc_jb.so");
@@ -74,7 +83,9 @@ symlink("/system/lib/libpowerkeeper_jni.so", "/system/app/PowerKeeper/lib/arm/li
 symlink("/system/lib/libprintspooler_jni.so", "/system/app/PrintSpooler/lib/arm/libprintspooler_jni.so");
 symlink("/system/lib/libqcomfm_jni.so", "/system/app/FactoryMode/lib/arm/libqcomfm_jni.so");
 symlink("/system/lib/libsecurities_sdk.so", "/system/app/MiuiVideo/lib/arm/libsecurities_sdk.so");
+symlink("/system/lib/libsecuritysdk-3.1.27.so", "/system/app/mab/lib/arm/libsecuritysdk-3.1.27.so");
 symlink("/system/lib/libspaces_jni.so", "/system/priv-app/SpacesManagerService/lib/arm/libspaces_jni.so");
+symlink("/system/lib/libtencentloc.so", "/system/app/MetokNLP/lib/arm/libtencentloc.so");
 symlink("/system/lib/libttscompat.so", "/system/app/PicoTts/lib/arm/libttscompat.so");
 symlink("/system/lib/libttspico.so", "/system/app/PicoTts/lib/arm/libttspico.so");
 symlink("/system/lib/libwebp.so", "/system/app/SogouInput/lib/arm/libwebp.so");
@@ -303,7 +314,6 @@ set_metadata("/system/vendor/ChinaMobile/system/vendor/vendor.prop", "uid", 0, "
 set_metadata_recursive("/system/vendor/ChinaTelecom", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/ChinaTelecom/.preloadspec", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/ChinaTelecom/exclude.list", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata("/system/vendor/ChinaTelecom/system/app/AutoRegistration/AutoRegistration.apk", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/ChinaTelecom/system/app/CtBrowserQuick/CtBrowserQuick.apk", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/ChinaTelecom/system/app/CtLauncherRes/CtLauncherRes.apk", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/vendor/ChinaTelecom/system/app/CtRoamingSettings/CtRoamingSettings.apk", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
@@ -449,9 +459,7 @@ set_metadata("/system/vendor/lib/soundfx", "uid", 0, "gid", 2000, "mode", 0755, 
 set_metadata("/system/vendor/speccfg", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata_recursive("/system/xbin", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/xbin/shelld", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:shelld_exec:s0");
-show_progress(0.050000, 5);
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
-show_progress(0.200000, 10);
 
 # ---- radio update tasks ----
 
@@ -497,6 +505,7 @@ set_metadata_recursive("/data/miui", "uid", 1000, "gid", 1000, "dmode", 0755, "f
 delete_recursive("/data/miui/preinstall_apps");
 delete_recursive("/data/miui/cust/preinstall_apps");
 delete("/data/miui/cust/cn/theme/operator/boots/bootanimation.zip");
+show_progress(0.100000, 2);
 delete_recursive("/data/app/3rd-Didi");
 delete_recursive("/data/app/3rd-DkReader");
 delete_recursive("/data/app/3rd-QQ");
@@ -596,6 +605,7 @@ delete_recursive("/data/app/recommended-3rd-com.immomo.momo");
 delete_recursive("/data/app/recommended-3rd-com.qiyi.video");
 delete_recursive("/data/app/recommended-3rd-com.sina.weibo");
 delete_recursive("/data/app/recommended-3rd-com.tuan800.tao800");
+delete_recursive("/data/app/recommended-3rd-com.ss.android.article.news");
 delete_recursive("/data/app/WaliLive");
 delete_recursive("/data/app/VTalk");
 delete_recursive("/data/app/MiFinance");
